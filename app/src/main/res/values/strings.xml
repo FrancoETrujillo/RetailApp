@@ -1,0 +1,19 @@
+<resources>
+    <string name="app_name">ABFclone</string>
+    <string name="shopping_category">Shopping Category</string>
+    <string name="shopping_bag">Shopping Bag</string>
+    <string name="inbox">Inbox</string>
+    <string name="scan_to_shop">Scan to shop</string>
+    <string name="my_saves">My Saves</string>
+    <string name="my_account">My Account</string>
+    <string name="shop">Shop</string>
+    <string name="abf"><![CDATA[AB&F]]></string>
+    <string name="navigation_drawer_open">Open Navigation Drawer</string>
+    <string name="navigation_drawer_close">Close Navigation Drawer</string>
+    <string name="categories_tab_title">Categories</string>
+    <string name="explore_tab_title">Explore</string>
+    <string name="new_arrivals_tab_title">New Arrivals</string>
+    <string name="view_all"><![CDATA[VIEW ALL >]]></string>
+    <string name="new_arrivals">New Arrivals</string>
+    <string name="shopping_picture">shopping picture</string>
+</resources>

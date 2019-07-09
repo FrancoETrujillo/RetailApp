@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout>
+    <LinearLayout
+            xmlns:android="http://schemas.android.com/apk/res/android"
+            xmlns:tools="http://schemas.android.com/tools"
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            tools:context=".features.shop.ui.ShoppingFragment">
+
+        <com.google.android.material.tabs.TabLayout
+                android:id="@+id/shoppingTabLayout"
+                android:background="@color/colorPrimaryDark"
+                android:minHeight="?attr/actionBarSize"
+                android:theme="@style/ThemeOverlay.MaterialComponents.Dark.ActionBar"
+                style="@style/ShoppingTabLayout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"/>
+
+        <androidx.viewpager.widget.ViewPager
+                android:id="@+id/shoppingViewPager"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+        </androidx.viewpager.widget.ViewPager>
+
+
+    </LinearLayout>
+</layout>
