@@ -1,5 +1,6 @@
 package com.mvatech.ftrujillo.abfclone
 
+import android.graphics.Color
 import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
@@ -13,6 +14,7 @@ import androidx.drawerlayout.widget.DrawerLayout
 import com.mvatech.ftrujillo.abfclone.core.toast
 import com.mvatech.ftrujillo.abfclone.features.shop.ui.ShoppingFragment
 import kotlinx.android.synthetic.main.activity_main.*
+import kotlinx.android.synthetic.main.category_item.view.*
 
 
 class MainActivity : AppCompatActivity() {
@@ -33,7 +35,7 @@ class MainActivity : AppCompatActivity() {
         setSupportActionBar(binds.mainToolbar)
         supportActionBar?.setDisplayShowTitleEnabled(false)
         val shopByList = listOf("Shop Mens", "Shop Womens", "Shop Boy", "Shop Girls")
-        val spinnerAdapter = ArrayAdapter(this, android.R.layout.simple_spinner_item, shopByList)
+        val spinnerAdapter = ArrayAdapter(this, R.layout.spinner_item, shopByList)
         spinnerAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
         shoppingForSpinner.adapter = spinnerAdapter
 

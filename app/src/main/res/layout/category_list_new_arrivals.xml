@@ -11,11 +11,8 @@
             android:layout_height="match_parent">
         <TextView
                 android:text="@string/new_arrivals"
+                style="@style/CategoriesTabTitles"
                 android:layout_width="wrap_content"
-                android:textStyle="bold"
-                android:textAllCaps="true"
-                android:textSize="20sp"
-                android:textColor="@color/black"
                 android:layout_height="wrap_content" android:id="@+id/textView"
                 app:layout_constraintStart_toStartOf="parent"
                 android:layout_marginTop="16dp"

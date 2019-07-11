@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <style name="SquareButtonStyle" parent="Widget.MaterialComponents.Button.OutlinedButton">
+        <item name="android:backgroundTint">@color/colorPrimaryDarkTransparent</item>
+        <item name="android:textColor">@color/white</item>
+        <item name="android:bottomLeftRadius">@dimen/zero</item>
+        <item name="android:bottomRightRadius">@dimen/zero</item>
+        <item name="android:topRightRadius">@dimen/zero</item>
+        <item name="android:topLeftRadius">@dimen/zero</item>
+    </style>
+
+    <style name="CategoryCardStyle" parent="Widget.MaterialComponents.CardView">
+        <item name="android:layout_marginTop">@dimen/spacing_categories_card_separation</item>
+        <item name="android:layout_marginBottom">@dimen/spacing_categories_card_separation</item>
+        <item name="cardElevation">@dimen/zero</item>
+    </style>
+    <style name="CategoriesCollectionItem" parent="Widget.MaterialComponents.CardView">
+        <item name="android:layout_marginTop">@dimen/spacing_collection_card</item>
+        <item name="android:layout_marginBottom">@dimen/spacing_collection_card</item>
+        <item name="android:layout_marginStart">@dimen/spacing_collection_card</item>
+        <item name="android:layout_marginEnd">@dimen/spacing_collection_card</item>
+        <item name="cardCornerRadius">0dp</item>
+        <item name="cardElevation">@dimen/card_elevation_medium</item>
+    </style>
+
+    <style name="CategoriesTabTitles" parent="TextAppearance.AppCompat.Widget.TextView.SpinnerItem">
+        <item name="android:textStyle">bold</item>
+        <item name="android:textSize">20sp</item>
+        <item name="android:textAllCaps">true</item>
+        <item name="android:textColor">@color/black</item>
+    </style>
+
+    <style name="CategoriesNewArrivalsCard">
+        <item name="android:layout_width">120dp</item>
+        <item name="android:layout_height">150dp</item>
+        <item name="android:layout_marginEnd">@dimen/spacing_collection_card</item>
+        <item name="android:layout_marginStart">@dimen/spacing_categories_card_separation</item>
+    </style>
+</resources>
