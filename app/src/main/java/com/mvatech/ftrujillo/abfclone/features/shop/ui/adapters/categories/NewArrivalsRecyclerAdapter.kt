@@ -25,10 +25,8 @@ class NewArrivalsRecyclerAdapter(private val newArrivalList: List<NewArrival>) :
     }
 
     inner class Holder(itemView: View) : RecyclerView.ViewHolder(itemView), View.OnClickListener {
-        private val context:Context
         init {
             itemView.setOnClickListener(this)
-            context = itemView.context
         }
 
         override fun onClick(v: View?) {
@@ -36,7 +34,7 @@ class NewArrivalsRecyclerAdapter(private val newArrivalList: List<NewArrival>) :
         }
 
         fun bind(newArrival: NewArrival) {
-            GlideApp.with(context)
+            GlideApp.with(itemView.context)
                 .load(newArrival.image)
                 .into(this.itemView.categoryNewArrivalImageView)
         }

@@ -42,19 +42,29 @@ class MockDataGenerator{
 
     fun getClothingCategoryList(): List<ClothingCategory> {
         val list = mutableListOf<ClothingCategory>()
-        list.add(
-            ClothingCategory("Tops",
-            "https://anf.scene7.com/is/image/anf/KIC_125-9519-1040-106_prod1?\$product-anf-v1\$&wid=800&hei=1000")
-        )
+        for (i in 0 .. 6) {
+            list.add(
+                ClothingCategory(
+                    "Tops",
+                    "https://anf.scene7.com/is/image/anf/KIC_125-9519-1040-106_prod1?\$product-anf-v1\$&wid=800&hei=1000"
+                )
+            )
+
+        }
         return list
     }
 
     fun getCollectionList(): List<ClothingCollection> {
         val list = mutableListOf<ClothingCollection>()
+        for (i in 0..10) {
         list.add(
-            ClothingCollection("Pride Collection",
-                "https://anf.scene7.com/is/image/anf/KIC_133-9175-0655-201_prod1?\$product-anf-v1\$&wid=800&hei=1000")
+            ClothingCollection(
+                "Pride Collection",
+                "https://anf.scene7.com/is/image/anf/KIC_133-9175-0655-201_prod1?\$product-anf-v1\$&wid=800&hei=1000"
+            )
         )
+    }
+
         return list
     }
 

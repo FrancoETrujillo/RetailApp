@@ -5,13 +5,14 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
-import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.mvatech.ftrujillo.abfclone.R
-import com.mvatech.ftrujillo.abfclone.features.shop.ui.adapters.categories.NewArrivalsRecyclerAdapter
+import com.mvatech.ftrujillo.abfclone.features.shop.ui.adapters.categories.CategoriesRecyclerAdapter
 import com.mvatech.ftrujillo.abfclone.features.shop.viewmodels.CategoriesViewModel
-import kotlinx.android.synthetic.main.category_list_new_arrivals.*
+import kotlinx.android.synthetic.main.categories_fragment.*
+import timber.log.Timber
 
 class CategoriesFragment : Fragment() {
 
@@ -28,19 +29,23 @@ class CategoriesFragment : Fragment() {
         super.onActivityCreated(savedInstanceState)
         viewModel = ViewModelProviders.of(this).get(CategoriesViewModel::class.java)
 
-        setupRecyclerView()
-
+        setUpLiveData()
     }
 
-    private fun setupRecyclerView() {
-        categoriesNewArrivalsRecyclerView.apply {
-            layoutManager = LinearLayoutManager(activity, LinearLayoutManager.HORIZONTAL, false)
-            adapter = NewArrivalsRecyclerAdapter(viewModel.getNewArrivals())
+    private fun setUpLiveData() {
+        viewModel.getCategoriesContent().observe(this, onCategoriesTabContentReceived)
+    }
 
-        }. also {
-//            it.addItemDecoration(
-//                DividerItemDecoration(context, DividerItemDecoration.HORIZONTAL)
-//            )
+    private val onCategoriesTabContentReceived = Observer<List<Any>> {
+        Timber.d("Franco livedata %s", it.toString())
+        setupRecyclerView(it)
+    }
+
+    private fun setupRecyclerView(list: List<Any>) {
+        categoriesParentRecyclerView.apply {
+            layoutManager = LinearLayoutManager(activity)
+            adapter = CategoriesRecyclerAdapter(list)
+
         }
     }
 

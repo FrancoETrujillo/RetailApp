@@ -11,6 +11,7 @@ fun Any.toast(context: Context?, duration: Int = Toast.LENGTH_SHORT) {
     Toast.makeText(context, this.toString(), duration).show()
 }
 
-fun ViewGroup.inflate(@LayoutRes resource: Int, attachToRoot: Boolean): View {
+fun ViewGroup.inflate(@LayoutRes resource: Int, attachToRoot: Boolean = false): View {
     return LayoutInflater.from(context).inflate(resource, this, attachToRoot)
 }
+

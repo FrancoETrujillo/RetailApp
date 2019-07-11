@@ -16,4 +16,5 @@
     <string name="view_all"><![CDATA[VIEW ALL >]]></string>
     <string name="new_arrivals">New Arrivals</string>
     <string name="shopping_picture">shopping picture</string>
+    <string name="collections">Collections</string>
 </resources>
