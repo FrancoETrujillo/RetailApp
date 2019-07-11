@@ -12,11 +12,11 @@ import com.mvatech.ftrujillo.abfclone.R
 import com.mvatech.ftrujillo.abfclone.features.shop.ui.adapters.categories.CategoriesRecyclerAdapter
 import com.mvatech.ftrujillo.abfclone.features.shop.viewmodels.CategoriesViewModel
 import kotlinx.android.synthetic.main.categories_fragment.*
-import timber.log.Timber
 
 class CategoriesFragment : Fragment() {
 
     private lateinit var viewModel: CategoriesViewModel
+    private lateinit var contentAdapter:CategoriesRecyclerAdapter
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -28,23 +28,30 @@ class CategoriesFragment : Fragment() {
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
         viewModel = ViewModelProviders.of(this).get(CategoriesViewModel::class.java)
-
+        setupRecyclerView()
         setUpLiveData()
+        updateContent()
+    }
+
+    private fun updateContent() {
+        progressBar_loading.visibility = View.VISIBLE
+        viewModel.updateContent()
     }
 
     private fun setUpLiveData() {
-        viewModel.getCategoriesContent().observe(this, onCategoriesTabContentReceived)
+        viewModel.getCategoriesContent.observe(this, onCategoriesTabContentReceived)
     }
 
     private val onCategoriesTabContentReceived = Observer<List<Any>> {
-        Timber.d("Franco livedata %s", it.toString())
-        setupRecyclerView(it)
+        progressBar_loading.visibility = View.GONE
+        contentAdapter.updateData(it)
     }
 
-    private fun setupRecyclerView(list: List<Any>) {
+    private fun setupRecyclerView() {
+        contentAdapter = CategoriesRecyclerAdapter()
         categoriesParentRecyclerView.apply {
             layoutManager = LinearLayoutManager(activity)
-            adapter = CategoriesRecyclerAdapter(list)
+            adapter = contentAdapter
 
         }
     }

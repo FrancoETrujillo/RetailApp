@@ -18,12 +18,17 @@ import kotlinx.android.synthetic.main.category_list_collections.view.*
 import kotlinx.android.synthetic.main.category_list_new_arrivals.view.*
 import timber.log.Timber
 
-class CategoriesRecyclerAdapter(private val categoriesContent: List<Any>) :
+class CategoriesRecyclerAdapter(private var categoriesContent: List<Any> = listOf()) :
     RecyclerView.Adapter<BaseViewHolder<*>>() {
 
     enum class CategoryType { NEW_ARRIVALS, CATEGORY, COLLECTIONS }
 
     private val pool = RecyclerView.RecycledViewPool()
+
+    fun updateData(newContent: List<Any>){
+        categoriesContent = newContent
+        notifyDataSetChanged()
+    }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): BaseViewHolder<*> {
         Timber.d("franco %s", categoriesContent.size.toString())

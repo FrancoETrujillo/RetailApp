@@ -4,6 +4,7 @@
 <ImageView
         android:contentDescription="@string/shopping_picture"
         tools:srcCompat="@tools:sample/avatars[0]"
+        android:elevation="3dp"
         style="@style/CategoriesNewArrivalsCard"
         android:id="@+id/categoryNewArrivalImageView" xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:tools="http://schemas.android.com/tools"/>
