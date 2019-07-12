@@ -6,6 +6,7 @@ import com.mvatech.ftrujillo.abfclone.features.shop.data.repository.Repository
 import com.mvatech.ftrujillo.abfclone.features.shop.ui.ExploreFragment
 import com.mvatech.ftrujillo.abfclone.features.shop.viewmodels.CategoriesViewModel
 import com.mvatech.ftrujillo.abfclone.features.shop.viewmodels.ExploreViewModel
+import com.mvatech.ftrujillo.abfclone.features.shop.viewmodels.NewArrivalsViewModel
 import org.koin.android.viewmodel.dsl.viewModel
 import org.koin.dsl.module
 
@@ -14,4 +15,5 @@ val appModule = module {
     single<Repository>{MockedRepository(get())}
     viewModel { CategoriesViewModel(get()) }
     viewModel { ExploreViewModel(get()) }
+    viewModel { NewArrivalsViewModel(get()) }
 }
