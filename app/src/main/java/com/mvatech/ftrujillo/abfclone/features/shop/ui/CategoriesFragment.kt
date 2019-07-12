@@ -6,16 +6,16 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
-import androidx.lifecycle.ViewModelProviders
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.mvatech.ftrujillo.abfclone.R
 import com.mvatech.ftrujillo.abfclone.features.shop.ui.adapters.categories.CategoriesRecyclerAdapter
 import com.mvatech.ftrujillo.abfclone.features.shop.viewmodels.CategoriesViewModel
 import kotlinx.android.synthetic.main.categories_fragment.*
+import org.koin.android.viewmodel.ext.android.viewModel
 
 class CategoriesFragment : Fragment() {
 
-    private lateinit var viewModel: CategoriesViewModel
+    private val viewModel by viewModel<CategoriesViewModel>()
     private lateinit var contentAdapter:CategoriesRecyclerAdapter
 
     override fun onCreateView(
@@ -27,7 +27,6 @@ class CategoriesFragment : Fragment() {
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
-        viewModel = ViewModelProviders.of(this).get(CategoriesViewModel::class.java)
         setupRecyclerView()
         setUpLiveData()
         updateContent()
@@ -39,7 +38,7 @@ class CategoriesFragment : Fragment() {
     }
 
     private fun setUpLiveData() {
-        viewModel.getCategoriesContent.observe(this, onCategoriesTabContentReceived)
+        viewModel.categoriesContent.observe(this, onCategoriesTabContentReceived)
     }
 
     private val onCategoriesTabContentReceived = Observer<List<Any>> {

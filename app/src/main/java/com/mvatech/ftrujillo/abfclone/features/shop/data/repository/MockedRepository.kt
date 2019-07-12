@@ -4,8 +4,12 @@ import com.mvatech.ftrujillo.abfclone.features.shop.data.models.ClothingCategory
 import com.mvatech.ftrujillo.abfclone.features.shop.data.models.ClothingCollection
 import com.mvatech.ftrujillo.abfclone.features.shop.data.models.NewArrival
 import com.mvatech.ftrujillo.abfclone.features.shop.data.models.Promotion
+import com.mvatech.ftrujillo.abfclone.features.shop.data.network.NetworkApiService
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.withContext
+import timber.log.Timber
 
-class MockedRepository : Repository {
+class MockedRepository(private val apiService: NetworkApiService) : Repository {
 
     private val mockData = MockDataGenerator()
     override fun getNewArrivalList(): List<NewArrival> {
@@ -20,8 +24,19 @@ class MockedRepository : Repository {
         return mockData.getCollectionList()
     }
 
-    override fun getPromotionList(): List<Promotion> {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+    override suspend fun getPromotionList(): List<Promotion> {
+        Timber.d("Franco promotion list triggered")
+        return withContext(Dispatchers.IO){
+            val promoResponse = apiService.getPromotionList().await()
+            if(promoResponse.isSuccessful) {
+                Timber.d("Franco,  reposnse network %s", promoResponse.body())
+            }else{
+                Timber.d("Franco,  reposnse network %s", promoResponse.body())
+
+            }
+            return@withContext promoResponse.body()?: listOf()
+        }
+
     }
 
 }

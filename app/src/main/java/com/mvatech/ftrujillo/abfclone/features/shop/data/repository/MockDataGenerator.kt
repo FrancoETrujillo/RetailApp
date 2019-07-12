@@ -56,7 +56,7 @@ class MockDataGenerator{
 
     fun getCollectionList(): List<ClothingCollection> {
         val list = mutableListOf<ClothingCollection>()
-        for (i in 0..10) {
+        for (i in 0 until 3) {
         list.add(
             ClothingCollection(
                 "Pride Collection",

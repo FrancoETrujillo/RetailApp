@@ -1,7 +1,10 @@
 package com.mvatech.ftrujillo.abfclone.features.shop.data.models
 
 data class Promotion(
-    val img: String,
-    val promotionContent: List<PromotionContent>,
-    val disclaimer: String
+    val title: String,
+    val backgroundImage: String,
+    val content: List<Content>?,
+    val promoMessage: String?,
+    val bottomDescription: String?,
+    val topDescription: String?
 )

@@ -1,6 +1,5 @@
 package com.mvatech.ftrujillo.abfclone.features.shop.ui.adapters.categories
 
-import android.util.Log
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.GridLayoutManager

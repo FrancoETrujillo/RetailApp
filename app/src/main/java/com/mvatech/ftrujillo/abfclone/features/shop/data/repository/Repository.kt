@@ -9,5 +9,5 @@ interface Repository {
     fun getNewArrivalList():List<NewArrival>
     fun getClothingCategoryList(): List<ClothingCategory>
     fun getCollectionList(): List<ClothingCollection>
-    fun getPromotionList(): List<Promotion>
+    suspend fun getPromotionList(): List<Promotion>
 }
