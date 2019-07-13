@@ -2,13 +2,11 @@ package com.mvatech.ftrujillo.abfclone.features.shop.viewmodels
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.ViewModel
+import com.mvatech.ftrujillo.abfclone.core.ScopedViewModel
 import com.mvatech.ftrujillo.abfclone.features.shop.data.models.categories_tab_wrappers.CategoriesCollectionsContent
 import com.mvatech.ftrujillo.abfclone.features.shop.data.models.categories_tab_wrappers.CategoriesNewArrivalsContent
 import com.mvatech.ftrujillo.abfclone.features.shop.data.repository.Repository
-import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.SupervisorJob
 import kotlinx.coroutines.launch
 
 class CategoriesViewModel(private val repository: Repository) : ScopedViewModel() {

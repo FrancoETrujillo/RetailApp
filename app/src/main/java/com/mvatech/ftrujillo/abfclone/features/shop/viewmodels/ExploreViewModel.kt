@@ -2,6 +2,7 @@ package com.mvatech.ftrujillo.abfclone.features.shop.viewmodels
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
+import com.mvatech.ftrujillo.abfclone.core.ScopedViewModel
 import com.mvatech.ftrujillo.abfclone.features.shop.data.models.Promotion
 import com.mvatech.ftrujillo.abfclone.features.shop.data.repository.Repository
 import kotlinx.coroutines.launch

@@ -10,7 +10,6 @@ import androidx.recyclerview.widget.GridLayoutManager
 
 import com.mvatech.ftrujillo.abfclone.R
 import com.mvatech.ftrujillo.abfclone.features.shop.data.models.NewArrival
-import com.mvatech.ftrujillo.abfclone.features.shop.ui.adapters.categories.NewArrivalsRecyclerAdapter
 import com.mvatech.ftrujillo.abfclone.features.shop.ui.adapters.new_arrivals.NewArrivalsAdapter
 import com.mvatech.ftrujillo.abfclone.features.shop.viewmodels.NewArrivalsViewModel
 import kotlinx.android.synthetic.main.new_arrivals_fragment.*

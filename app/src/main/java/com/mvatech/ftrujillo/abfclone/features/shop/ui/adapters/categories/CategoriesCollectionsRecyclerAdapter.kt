@@ -9,8 +9,8 @@ import com.mvatech.ftrujillo.abfclone.core.inflate
 import com.mvatech.ftrujillo.abfclone.features.shop.data.models.ClothingCollection
 import kotlinx.android.synthetic.main.category_list_collection_item.view.*
 
-class CollectionsRecyclerAdapter(private val collections: List<ClothingCollection>) :
-    RecyclerView.Adapter<CollectionsRecyclerAdapter.Holder>() {
+class CategoriesCollectionsRecyclerAdapter(private val collections: List<ClothingCollection>) :
+    RecyclerView.Adapter<CategoriesCollectionsRecyclerAdapter.Holder>() {
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): Holder {
         return Holder(parent.inflate(R.layout.category_list_collection_item))
     }

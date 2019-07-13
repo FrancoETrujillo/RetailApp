@@ -72,7 +72,7 @@ class CategoriesRecyclerAdapter(private var categoriesContent: List<Any> = listO
         override fun bind(item: CategoriesNewArrivalsContent) {
             itemView.categorieesNewArrivalsRecyclerView.apply {
                 layoutManager = LinearLayoutManager(this.context, LinearLayoutManager.HORIZONTAL, false)
-                adapter = NewArrivalsRecyclerAdapter(item.newArrivals)
+                adapter = CategoriesNewArrivalsRecyclerAdapter(item.newArrivals)
                 setRecycledViewPool(pool)
             }
         }
@@ -92,7 +92,7 @@ class CategoriesRecyclerAdapter(private var categoriesContent: List<Any> = listO
         override fun bind(item: CategoriesCollectionsContent) {
             itemView.categoriesCollectionRecyclerView.apply {
                 layoutManager = GridLayoutManager(itemView.context, 2)
-                adapter = CollectionsRecyclerAdapter(item.collections)
+                adapter = CategoriesCollectionsRecyclerAdapter(item.collections)
                 setRecycledViewPool(pool)
             }
         }

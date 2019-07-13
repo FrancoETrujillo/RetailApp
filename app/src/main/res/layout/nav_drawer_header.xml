@@ -12,7 +12,7 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             style="@style/HeaderDrawerText"
-            android:text="@string/abf"
+            android:text="@string/clothing_co"
     />
 
 </FrameLayout>

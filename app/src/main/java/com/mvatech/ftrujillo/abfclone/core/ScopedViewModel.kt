@@ -1,4 +1,4 @@
-package com.mvatech.ftrujillo.abfclone.features.shop.viewmodels
+package com.mvatech.ftrujillo.abfclone.core
 
 import androidx.lifecycle.ViewModel
 import kotlinx.coroutines.CoroutineScope

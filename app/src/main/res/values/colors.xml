@@ -6,4 +6,5 @@
     <color name="white">#FFFFFF</color>
     <color name="colorPrimaryDarkTransparent">#6F2E2E2E</color>
     <color name="black">#000000</color>
+    <color name="colorContrastGray">#B1B0B0</color>
 </resources>

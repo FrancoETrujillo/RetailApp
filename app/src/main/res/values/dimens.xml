@@ -6,10 +6,10 @@
     <dimen name="card_elevation_medium">5dp</dimen>
     <dimen name="spacing_collection_card">5dp</dimen>
 
-    <!--checkl-->
     <dimen name="top_description_size">13sp</dimen>
     <dimen name="title_size">17sp</dimen>
     <dimen name="promoMessage_size">11sp</dimen>
     <dimen name="bottomDescription_size">13sp</dimen>
     <dimen name="content_size">15sp</dimen>
+    <dimen name="button_stroke_width_medium">1dp</dimen>
 </resources>
