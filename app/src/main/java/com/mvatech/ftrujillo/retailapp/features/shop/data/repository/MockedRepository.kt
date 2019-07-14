@@ -7,7 +7,6 @@ import com.mvatech.ftrujillo.retailapp.features.shop.data.models.Promotion
 import com.mvatech.ftrujillo.retailapp.features.shop.data.network.NetworkApiService
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
-import timber.log.Timber
 
 class MockedRepository(private val apiService: NetworkApiService) : Repository {
 
@@ -25,22 +24,15 @@ class MockedRepository(private val apiService: NetworkApiService) : Repository {
     }
 
     override suspend fun getPromotionList(): List<Promotion> {
-        Timber.d("Franco promotion list triggered")
-        return withContext(Dispatchers.IO){
+        return withContext(Dispatchers.IO) {
             val promoResponse = apiService.getPromotionList().await()
             val response = mutableListOf<Promotion>()
-            if(promoResponse.isSuccessful) {
-                Timber.d("Franco,  reposnse network %s", promoResponse.body())
+            if (promoResponse.isSuccessful) {
                 promoResponse.body()?.let {
                     mockData.preparePromotionList(it)
                     response.addAll(it)
                 }
-
-            }else{
-                Timber.d("Franco,  reposnse network %s", promoResponse.body())
-
             }
-
             return@withContext response
         }
 

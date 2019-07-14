@@ -44,6 +44,7 @@ class CategoriesFragment : Fragment() {
     private val onCategoriesTabContentReceived = Observer<List<Any>> {
         progressBar_loading.visibility = View.GONE
         contentAdapter.updateData(it)
+        categoriesParentRecyclerView.layoutManager?.scrollToPosition(it.size-1)
     }
 
     private fun setupRecyclerView() {

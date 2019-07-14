@@ -22,7 +22,6 @@ interface NetworkApiService {
 
     companion object {
         operator fun invoke(): NetworkApiService {
-            Timber.d("Franco network invoked")
 
             val interceptor = Interceptor{chain ->
                 val original = chain.request()

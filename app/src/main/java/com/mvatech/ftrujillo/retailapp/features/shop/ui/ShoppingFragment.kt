@@ -37,7 +37,10 @@ class ShoppingFragment : Fragment() {
             val pageAdapter = ShoppingPagerAdapter(it, fragmentList)
             shoppingViewPager.adapter = pageAdapter
             shoppingTabLayout.setupWithViewPager(shoppingViewPager)
+            val tab = shoppingTabLayout.getTabAt(1)
+            tab?.select()
         }
+
     }
 
 }

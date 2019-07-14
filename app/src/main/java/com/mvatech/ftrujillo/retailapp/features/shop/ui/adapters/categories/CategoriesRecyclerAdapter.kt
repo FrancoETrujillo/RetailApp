@@ -3,6 +3,7 @@ package com.mvatech.ftrujillo.retailapp.features.shop.ui.adapters.categories
 import android.graphics.Color
 import android.view.View
 import android.view.ViewGroup
+import android.view.animation.AnimationUtils
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -31,7 +32,6 @@ class CategoriesRecyclerAdapter(private var categoriesContent: List<Any> = listO
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): BaseViewHolder<*> {
-        Timber.d("franco %s", categoriesContent.size.toString())
         return when (viewType) {
             CategoryType.NEW_ARRIVALS.ordinal ->
                 NewArrivalsHolder(parent.inflate(R.layout.category_list_new_arrivals))
@@ -49,7 +49,6 @@ class CategoriesRecyclerAdapter(private var categoriesContent: List<Any> = listO
 
     override fun onBindViewHolder(holder: BaseViewHolder<*>, position: Int) {
         val item = categoriesContent[position]
-        Timber.d("franco %s", categoriesContent[position].toString())
         when (holder) {
             is NewArrivalsHolder -> holder.bind(item as CategoriesNewArrivalsContent)
             is CategoryHolder -> holder.bind(item as ClothingCategory)
@@ -60,7 +59,6 @@ class CategoriesRecyclerAdapter(private var categoriesContent: List<Any> = listO
     }
 
     override fun getItemViewType(position: Int): Int {
-        Timber.d("franco %s", categoriesContent[position].toString())
         return when (categoriesContent[position]) {
             is CategoriesNewArrivalsContent -> CategoryType.NEW_ARRIVALS.ordinal
             is ClothingCategory -> CategoryType.CATEGORY.ordinal
@@ -98,10 +96,10 @@ class CategoriesRecyclerAdapter(private var categoriesContent: List<Any> = listO
                     setTextColor(Color.RED)
                 }
             }
-
             GlideApp.with(itemView.context)
                 .load(item.img)
                 .into(this.itemView.categoryImageView)
+            animateView(itemView)
         }
 
     }
@@ -114,8 +112,14 @@ class CategoriesRecyclerAdapter(private var categoriesContent: List<Any> = listO
                 setRecycledViewPool(pool)
             }
         }
-
     }
 
+    private fun animateView(viewToAnimate: View){
+        if(viewToAnimate.animation == null){
+            val animId =R.anim.slide_from_right
+            val animation = AnimationUtils.loadAnimation(viewToAnimate.context, animId)
+            viewToAnimate.animation = animation
+        }
+    }
 
 }
