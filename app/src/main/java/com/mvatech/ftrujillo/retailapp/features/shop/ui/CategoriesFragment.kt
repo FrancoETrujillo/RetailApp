@@ -51,7 +51,6 @@ class CategoriesFragment : Fragment() {
         categoriesParentRecyclerView.apply {
             layoutManager = LinearLayoutManager(activity)
             adapter = contentAdapter
-
         }
     }
 

@@ -23,9 +23,9 @@ class CategoriesRecyclerAdapter(private var categoriesContent: List<Any> = listO
 
     enum class CategoryType { NEW_ARRIVALS, CATEGORY, COLLECTIONS }
 
-    private val pool = RecyclerView.RecycledViewPool()
+    val pool = RecyclerView.RecycledViewPool()
 
-    fun updateData(newContent: List<Any>){
+    fun updateData(newContent: List<Any>) {
         categoriesContent = newContent
         notifyDataSetChanged()
     }
@@ -71,21 +71,29 @@ class CategoriesRecyclerAdapter(private var categoriesContent: List<Any> = listO
 
     inner class NewArrivalsHolder(view: View) : BaseViewHolder<CategoriesNewArrivalsContent>(view) {
         override fun bind(item: CategoriesNewArrivalsContent) {
+            val newArrivalsAdapter = CategoriesNewArrivalsRecyclerAdapter(item.newArrivals)
             itemView.categorieesNewArrivalsRecyclerView.apply {
                 layoutManager = LinearLayoutManager(this.context, LinearLayoutManager.HORIZONTAL, false)
-                adapter = CategoriesNewArrivalsRecyclerAdapter(item.newArrivals)
+                adapter = newArrivalsAdapter
                 setRecycledViewPool(pool)
             }
-            itemView.categorieesNewArrivalsRecyclerView.viewTreeObserver.addOnGlobalLayoutListener {
-
-            }
+            itemView.categorieesNewArrivalsRecyclerView.addOnScrollListener(object : RecyclerView.OnScrollListener() {
+                override fun onScrolled(recyclerView: RecyclerView, dx: Int, dy: Int) {
+                    super.onScrolled(recyclerView, dx, dy)
+                    newArrivalsAdapter.scrollDirection =
+                        if (dx < 0)
+                            CategoriesNewArrivalsRecyclerAdapter.ScrollDirection.LEFT
+                        else
+                            CategoriesNewArrivalsRecyclerAdapter.ScrollDirection.RIGHT
+                }
+            })
         }
     }
 
     inner class CategoryHolder(view: View) : BaseViewHolder<ClothingCategory>(view) {
         override fun bind(item: ClothingCategory) {
             itemView.categoryNameTextView.text = item.name
-            if(item.highlighted){
+            if (item.highlighted) {
                 itemView.categoryNameTextView.apply {
                     setTextColor(Color.RED)
                 }
