@@ -23,7 +23,7 @@ class CategoriesRecyclerAdapter(private var categoriesContent: List<Any> = listO
 
     enum class CategoryType { NEW_ARRIVALS, CATEGORY, COLLECTIONS }
 
-    val pool = RecyclerView.RecycledViewPool()
+    private val pool = RecyclerView.RecycledViewPool()
 
     fun updateData(newContent: List<Any>) {
         categoriesContent = newContent

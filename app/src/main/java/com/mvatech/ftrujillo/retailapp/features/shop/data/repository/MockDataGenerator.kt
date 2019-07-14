@@ -121,4 +121,21 @@ class MockDataGenerator {
         return list
     }
 
+    fun preparePromotionList(promotions: List<Promotion>): List<Promotion> {
+        var count = 0
+        for (i in 0 until promotions.size) {
+            if (count == bannerList.size) count = 0
+            promotions[i].backgroundImage = bannerList[count]
+            count++
+        }
+        return promotions
+    }
+
+    private val bannerList = listOf(
+        "https://eqting.bn.files.1drv.com/y4mKpBBiIM5ZBaBpOWCCQpuF72wni7zIWWKs3l3wRKHfBsEiadXyEsdGXQahsy1rO1YpwnI6RkoaDAJe1HeueiXVAwkCBKEGarVOG1kwQs_8-KAYrsAkVemCBkMdZLKz50TfpyAXHFcz2cXJcPmDdf1R-TGWxEwJlIsKzdZYT3iyPL9niQdY78F08AyGOe1SabTWl06-A0ZcyAvAdSI3iQg_g?width=904&height=505&cropmode=none",
+        "https://cau7tw.bn.files.1drv.com/y4mrnodBdSRALAMUolj6Jyqs0ht1WQ5pTwpTLeb3PqtNLYdP8maoYTIG-0XWnvpQ8eHSMabu7OfUuWjNoOwD1-pj7LM-vzFa5494NXKoZHla8UWmVcjaBh8nPWmIa73h7X6HMEOWR06K_f-iHQc_i2dopn1IjeyQ-LF4iry3KL_hiQMbc8sFoJQYNmP1dfR_9ny_ekftO0LZ9unsFWGybsaug?width=904&height=505&cropmode=none",
+        "https://cqu7tw.bn.files.1drv.com/y4mdFlKM-IRIjcncAk5zOm9YhCiXxlONFi5e7JlX6WlERSgTUEKuom6QFIg7x9h2-ZMVcNFjEj-g6CcGeNvuLvbgMuWonX4yubl0kj6fXLX8F6VMiwM1FBpoj5VyLe3pt9iZ3jmDgEzk6IkhgNmrHB3T3n8zhbPG6zbgqUyh0M1UNgDJFXxwlczlEShaLAz3Jkb1L5CEP1vY95aZrYFdutrog?width=904&height=505&cropmode=none",
+        "https://cgu7tw.bn.files.1drv.com/y4mLAP8wqv0tQ04_cV_P5sstgHqxd6PNa-YCX2k5ulJnw0dcpyphssRjosSTiesJUckHloyb7DbmPzSGAfuKR80V2PAnJQzUHV1EVzEvUxtluhsrn8-ERdzDRZrTZavruS48Xzm366Wdmjn1o1flY6ACTcz89_hMA9oUV6N-h6eqKR4LGDZakun8ME2Ms6qMu0ypLd85ZPJ3qW3CLe920fhrQ?width=904&height=505&cropmode=none",
+        "https://cwu7tw.bn.files.1drv.com/y4m5b7K1OFHGVuB5zGxK_RYnPLHm-Qc3Bn_GfxxDjAPDe0fHzym0L9Qg5lNG9hieVtcTt9aAou1EEHhiu6u1_2GIgJy5A_59Oc7jIEfsjEGzceD_MfKZtM3eJbPezwhK0MBjtyQaiOazqAQupPFkN7mi-R5egOEQLbucQyUPEa6x5fjOaKGFcyLuJDP-0M4dMlt6iyRKb-3G2n9yCqGiJq8XQ?width=904&height=505&cropmode=none"
+    )
 }

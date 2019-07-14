@@ -28,13 +28,20 @@ class MockedRepository(private val apiService: NetworkApiService) : Repository {
         Timber.d("Franco promotion list triggered")
         return withContext(Dispatchers.IO){
             val promoResponse = apiService.getPromotionList().await()
+            val response = mutableListOf<Promotion>()
             if(promoResponse.isSuccessful) {
                 Timber.d("Franco,  reposnse network %s", promoResponse.body())
+                promoResponse.body()?.let {
+                    mockData.preparePromotionList(it)
+                    response.addAll(it)
+                }
+
             }else{
                 Timber.d("Franco,  reposnse network %s", promoResponse.body())
 
             }
-            return@withContext promoResponse.body()?: listOf()
+
+            return@withContext response
         }
 
     }
