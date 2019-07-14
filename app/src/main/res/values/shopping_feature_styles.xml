@@ -23,7 +23,7 @@
         <item name="android:textSize">18sp</item>
     </style>
 
-    <style name="CategoryCardText.CollectionCard" >
+    <style name="CategoryCardText.CollectionCard">
         <item name="android:layout_gravity">center</item>
         <item name="android:textSize">14sp</item>
         <item name="android:textAllCaps">true</item>
@@ -54,5 +54,12 @@
         <item name="android:layout_marginEnd">@dimen/spacing_categories_card_separation</item>
         <item name="android:layout_marginStart">@dimen/spacing_categories_card_separation</item>
         <item name="android:layout_marginBottom">@dimen/spacing_categories_card_separation</item>
+    </style>
+
+    <style name="NewArrivalPriceTag">
+        <item name="android:paddingStart">1dp</item>
+        <item name="android:paddingEnd">1dp</item>
+        <item name="android:textSize">14sp</item>
+        <item name="android:textStyle">bold</item>
     </style>
 </resources>

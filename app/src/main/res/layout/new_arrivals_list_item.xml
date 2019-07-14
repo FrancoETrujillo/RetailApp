@@ -35,18 +35,31 @@
                 tools:text="$50"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                style="@style/NewArrivalPriceTag"
+                android:visibility="gone"
+                android:id="@+id/discountedPrice"
+                android:textColor="@android:color/holo_red_dark"
+                app:layout_constraintTop_toTopOf="@+id/price" app:layout_constraintStart_toEndOf="@+id/price"
+                tools:visibility="visible" android:layout_marginStart="2dp"/>
+        <TextView
+                tools:text="$50"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                style="@style/NewArrivalPriceTag"
                 app:layout_constraintTop_toBottomOf="@+id/title" app:layout_constraintStart_toStartOf="parent"
-                android:layout_marginStart="8dp" android:id="@+id/price" android:textSize="14sp"
-                android:textStyle="bold" android:textColor="@color/black"
-                android:fontFamily="@font/pathway_gothic_one"/>
+                android:layout_marginStart="8dp" android:id="@+id/price"
+                android:textColor="@color/black"/>
         <TextView
                 tools:text="Trend Type"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:paddingStart="2dp"
+                android:paddingEnd="2dp"
                 android:id="@+id/trendType"
                 app:layout_constraintTop_toBottomOf="@+id/collectionInfo" app:layout_constraintStart_toStartOf="parent"
                 android:layout_marginStart="8dp" android:textSize="12sp"
-                android:fontFamily="@font/pathway_gothic_one"/>
+                android:fontFamily="@font/pathway_gothic_one" android:layout_marginBottom="8dp"
+                app:layout_constraintBottom_toBottomOf="parent"/>
         <androidx.appcompat.widget.AppCompatImageView
                 tools:src="@tools:sample/avatars[1]"
                 android:layout_width="match_parent"
