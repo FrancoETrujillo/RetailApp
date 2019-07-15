@@ -13,12 +13,12 @@ class MockDataGenerator {
         val list = mutableListOf<NewArrival>()
         val imageList = generateImageList(size)
         for (i in 0 until size) {
-            if(i %2 == 0){
+            if (i % 2 == 0) {
                 list.add(
                     NewArrival(
                         i.toLong(), imageList[i],
-                        "Vacation Button-Up", generateRandomIntPriceFromRange(50,70),
-                        generateRandomIntPriceFromRange(40,49), "Mens",
+                        "Vacation Button-Up", generateRandomIntPriceFromRange(50, 70),
+                        generateRandomIntPriceFromRange(40, 49), "Mens",
                         "Getaway Essentials",
                         "Trend Edit", "https://www.abercrombie.com/shop/us"
                     )
@@ -27,8 +27,8 @@ class MockDataGenerator {
                 list.add(
                     NewArrival(
                         i.toLong(), imageList[i],
-                        "Vacation Button-Up", generateRandomFloatPriceFromRange(70,100),
-                        generateRandomFloatPriceFromRange(50,60), "Mens",
+                        "Vacation Button-Up", generateRandomFloatPriceFromRange(70, 100),
+                        generateRandomFloatPriceFromRange(50, 60), "Mens",
                         "Getaway Essentials",
                         "Trend Edit", "https://www.abercrombie.com/shop/us"
                     )
@@ -51,18 +51,19 @@ class MockDataGenerator {
         return mutableList
     }
 
-    private fun generateRandomIntPriceFromRange(low: Int, up: Int): BigDecimal{
-       return BigDecimal(Random.nextInt(low, up)).setScale(2, RoundingMode.FLOOR)
+    private fun generateRandomIntPriceFromRange(low: Int, up: Int): BigDecimal {
+        return BigDecimal(Random.nextInt(low, up)).setScale(2, RoundingMode.FLOOR)
     }
 
-    private fun generateRandomFloatPriceFromRange(low: Int, up: Int): BigDecimal{
+    private fun generateRandomFloatPriceFromRange(low: Int, up: Int): BigDecimal {
         return BigDecimal(Random.nextDouble(low.toDouble(), up.toDouble())).setScale(2, RoundingMode.FLOOR)
     }
+
     private val newArrivalPhotos = listOf(
         "https://bau0ca.bn.files.1drv.com/y4mr211En_Ue6Myu7ERqyeFBLvC0l0fUuVaApZqe9seNEe4EQCHCx847R9OiP3I5y9YXQUBrlmzEDdnACs-Phrj9Swajc_Ekcm3i-fdXxVOgmFqtNTgAhQuETCdYq4nr1g2QieAPsbI7PV7aE1I84uiJbdWSisD13wOjZWIJGx1-Zd7XL5REz1AlrnwBheKKFvpT5IGsPziqvWK2WZaMCNp5g?width=432&height=540&cropmode=none",
         "https://cwt32a.bn.files.1drv.com/y4mmKAG6szDWNaahMW18DUwdvLpEoOklhllV0ElcCKaLVqZY_8YJ_3zqmoSzQIlOTOhWaNzafwyBxiis9s9qsB8IgIErj2UoeS1ImojrxSLlztbOBM7m4rahD_w3vNh-VN2z6PXS1Yjn1OxBzxFk_39810IUOeV0SY8uUZ1mxrNGu27WlXUs6JBvCN_1L8FKj5p-YLNfXZd6hSD4C3dbTcWGw?width=432&height=540&cropmode=none",
         "https://cat32a.bn.files.1drv.com/y4mw29-mWtKmVv-oCqfwiNspmr_nl6sIgwMVoHb-7qw_aDxe4zBDEx-nbhHddPR-83-FtUfOB0dJnctmz_YoX_QlC_W-39chpDipQdLzLoJ7g68UfDhf9_yfyOCZYDu53YplSKy1_kOf1K8z3had56FZvS27OPIgowq78DdJn8oixXGNKFUMOiUyd0yq7SNQsU-U6UJuD9ghPmBbTmL5FOjfA?width=432&height=540&cropmode=none",
-        "https://bqu0ca.bn.files.1drv.com/y4mDfw1-fk3HvCmz7070D0DkuJADwQ7ACQ5ouTcONpUEmdhCZkcPNHXDx7Tua-mmCM42xLM16Mxj0Iv4UdSwha3YeD8PKxYufOjRJjvKAzv9l3KGCY308BDxKT8ErLb-0bBQi0qbmqITRZ3hEJHTAX0iEBJSzfGeNa2y_XP-uNvHRrvmrW2oZ-de0KgccthbVTvv9xGcINvxm2r0dH5LoFsjQ?width=432&height=540&cropmode=none"
+        "https://cgting.bn.files.1drv.com/y4mN1ayXRWg4a_IvW65R129SLbMiK2rsE7Z-7lENcOE-WuxJVjfaCXfpVuOnvjk8TzHaRY6Dt7KI84NHqtm3ta3CMl0NKmCF05uT1WMllSZpN_oMciXBUr6VitNyG4nzBIpvI-3l8NjX3orznq_XE7iRDeq6fGI4k35auA0aSujh5nQwJbXUvYZrYredU59fw5vXUbnWm55cvPcVWdvevB2Uw?width=603&height=754&cropmode=none"
     )
 
 
@@ -77,7 +78,7 @@ class MockDataGenerator {
         list.add(
             ClothingCategory(
                 "Jackets & Coats",
-                "https://bqt32a.bn.files.1drv.com/y4mxOcrBg8c37GkqD99nwTY4jgpNZnmbSgE1Dj0_r1Qm5iX-8Lh3id0p2Vc797dXRIvufHO56HeusfKf66aG4qxUpdgrZlxGjmqXNAoLKaEsC_VhTFSEVU2cRSSFc7PqczrMK-yKyhn512KqZ0Xu5xkptwpfrPtO0buIULpUIpqwuRZ_gBFK4YzvxGoxTiDfAoaFLCW-g0l0xAZasVMLODhDg?width=432&height=540&cropmode=none"
+                "https://cgting.bn.files.1drv.com/y4mN1ayXRWg4a_IvW65R129SLbMiK2rsE7Z-7lENcOE-WuxJVjfaCXfpVuOnvjk8TzHaRY6Dt7KI84NHqtm3ta3CMl0NKmCF05uT1WMllSZpN_oMciXBUr6VitNyG4nzBIpvI-3l8NjX3orznq_XE7iRDeq6fGI4k35auA0aSujh5nQwJbXUvYZrYredU59fw5vXUbnWm55cvPcVWdvevB2Uw?width=603&height=754&cropmode=none"
             )
         )
         list.add(
@@ -108,7 +109,7 @@ class MockDataGenerator {
         list.add(
             ClothingCollection(
                 "OUR COLLECTION",
-                "https://bqu0ca.bn.files.1drv.com/y4mDfw1-fk3HvCmz7070D0DkuJADwQ7ACQ5ouTcONpUEmdhCZkcPNHXDx7Tua-mmCM42xLM16Mxj0Iv4UdSwha3YeD8PKxYufOjRJjvKAzv9l3KGCY308BDxKT8ErLb-0bBQi0qbmqITRZ3hEJHTAX0iEBJSzfGeNa2y_XP-uNvHRrvmrW2oZ-de0KgccthbVTvv9xGcINvxm2r0dH5LoFsjQ?width=432&height=540&cropmode=none"
+                "https://cgting.bn.files.1drv.com/y4mN1ayXRWg4a_IvW65R129SLbMiK2rsE7Z-7lENcOE-WuxJVjfaCXfpVuOnvjk8TzHaRY6Dt7KI84NHqtm3ta3CMl0NKmCF05uT1WMllSZpN_oMciXBUr6VitNyG4nzBIpvI-3l8NjX3orznq_XE7iRDeq6fGI4k35auA0aSujh5nQwJbXUvYZrYredU59fw5vXUbnWm55cvPcVWdvevB2Uw?width=603&height=754&cropmode=none"
             )
         )
         list.add(
