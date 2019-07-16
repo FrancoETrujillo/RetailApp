@@ -1,28 +1,24 @@
 package com.mvatech.ftrujillo.retailapp.features.shop.ui.adapters.categories
 
-import android.graphics.Color
-import android.view.View
 import android.view.ViewGroup
-import android.view.animation.AnimationUtils
-import androidx.recyclerview.widget.GridLayoutManager
-import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.mvatech.ftrujillo.retailapp.R
 import com.mvatech.ftrujillo.retailapp.core.BaseViewHolder
-import com.mvatech.ftrujillo.retailapp.core.GlideApp
 import com.mvatech.ftrujillo.retailapp.core.inflate
 import com.mvatech.ftrujillo.retailapp.features.shop.data.models.ClothingCategory
-import com.mvatech.ftrujillo.retailapp.features.shop.data.models.categories_tab_wrappers.CategoriesCollectionsContent
+import com.mvatech.ftrujillo.retailapp.features.shop.data.models.ClothingCollection
 import com.mvatech.ftrujillo.retailapp.features.shop.data.models.categories_tab_wrappers.CategoriesNewArrivalsContent
-import kotlinx.android.synthetic.main.category_item.view.*
-import kotlinx.android.synthetic.main.category_list_collections.view.*
-import kotlinx.android.synthetic.main.category_list_new_arrivals.view.*
+import com.mvatech.ftrujillo.retailapp.features.shop.data.models.categories_tab_wrappers.CategoriesSectionHeader
+import com.mvatech.ftrujillo.retailapp.features.shop.ui.adapters.categories.view_holders.CategoriesCollectionHolder
+import com.mvatech.ftrujillo.retailapp.features.shop.ui.adapters.categories.view_holders.CategoriesNewArrivalListHolder
+import com.mvatech.ftrujillo.retailapp.features.shop.ui.adapters.categories.view_holders.CategoryItemHolder
+import com.mvatech.ftrujillo.retailapp.features.shop.ui.adapters.categories.view_holders.CategoriesSectionHeaderHolder
 import timber.log.Timber
 
 class CategoriesRecyclerAdapter(private var categoriesContent: List<Any> = listOf()) :
     RecyclerView.Adapter<BaseViewHolder<*>>() {
 
-    enum class CategoryType { NEW_ARRIVALS, CATEGORY, COLLECTIONS }
+    enum class CategoryType { NEW_ARRIVALS, CATEGORY, COLLECTIONS, SECTION_HEADER }
 
     private val pool = RecyclerView.RecycledViewPool()
 
@@ -34,11 +30,12 @@ class CategoriesRecyclerAdapter(private var categoriesContent: List<Any> = listO
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): BaseViewHolder<*> {
         return when (viewType) {
             CategoryType.NEW_ARRIVALS.ordinal ->
-                NewArrivalsHolder(parent.inflate(R.layout.category_list_new_arrivals))
+                CategoriesNewArrivalListHolder(parent.inflate(R.layout.category_list_new_arrivals), pool)
             CategoryType.CATEGORY.ordinal ->
-                CategoryHolder(parent.inflate(R.layout.category_item))
+                CategoryItemHolder(parent.inflate(R.layout.category_item))
             CategoryType.COLLECTIONS.ordinal ->
-                CollectionsHolder(parent.inflate(R.layout.category_list_collections))
+                CategoriesCollectionHolder(parent.inflate(R.layout.category_list_collection_item))
+            CategoryType.SECTION_HEADER.ordinal -> CategoriesSectionHeaderHolder(parent.inflate(R.layout.section_header))
             else -> throw IllegalArgumentException(viewType.toString())
         }
     }
@@ -49,77 +46,32 @@ class CategoriesRecyclerAdapter(private var categoriesContent: List<Any> = listO
 
     override fun onBindViewHolder(holder: BaseViewHolder<*>, position: Int) {
         val item = categoriesContent[position]
+        Timber.d("Franco holder is type %s,--- %s", holder is CategoriesCollectionHolder, holder.javaClass.name)
+        Timber.d("Franco trying to bind position %d content = %s", position, item.toString())
         when (holder) {
-            is NewArrivalsHolder -> holder.bind(item as CategoriesNewArrivalsContent)
-            is CategoryHolder -> holder.bind(item as ClothingCategory)
-            is CollectionsHolder -> holder.bind(item as CategoriesCollectionsContent)
+            is CategoriesNewArrivalListHolder -> holder.bind(item as CategoriesNewArrivalsContent)
+            is CategoryItemHolder -> holder.bind(item as ClothingCategory)
+            is CategoriesCollectionHolder -> holder.bind(item as ClothingCollection)
+            is CategoriesSectionHeaderHolder -> holder.bind(item as CategoriesSectionHeader)
             else -> throw IllegalArgumentException()
         }
-
     }
 
     override fun getItemViewType(position: Int): Int {
         return when (categoriesContent[position]) {
             is CategoriesNewArrivalsContent -> CategoryType.NEW_ARRIVALS.ordinal
             is ClothingCategory -> CategoryType.CATEGORY.ordinal
-            is CategoriesCollectionsContent -> CategoryType.COLLECTIONS.ordinal
+            is ClothingCollection -> CategoryType.COLLECTIONS.ordinal
+            is CategoriesSectionHeader -> CategoryType.SECTION_HEADER.ordinal
             else -> -1
         }
     }
 
-    inner class NewArrivalsHolder(view: View) : BaseViewHolder<CategoriesNewArrivalsContent>(view) {
-        override fun bind(item: CategoriesNewArrivalsContent) {
-            val newArrivalsAdapter = CategoriesNewArrivalsRecyclerAdapter(item.newArrivals)
-            itemView.categorieesNewArrivalsRecyclerView.apply {
-                layoutManager = LinearLayoutManager(this.context, LinearLayoutManager.HORIZONTAL, false)
-                adapter = newArrivalsAdapter
-                setRecycledViewPool(pool)
-            }
-            itemView.categorieesNewArrivalsRecyclerView.addOnScrollListener(object : RecyclerView.OnScrollListener() {
-                override fun onScrolled(recyclerView: RecyclerView, dx: Int, dy: Int) {
-                    super.onScrolled(recyclerView, dx, dy)
-                    newArrivalsAdapter.scrollDirection =
-                        if (dx < 0)
-                            CategoriesNewArrivalsRecyclerAdapter.ScrollDirection.LEFT
-                        else
-                            CategoriesNewArrivalsRecyclerAdapter.ScrollDirection.RIGHT
-                }
-            })
-        }
-    }
-
-    inner class CategoryHolder(view: View) : BaseViewHolder<ClothingCategory>(view) {
-        override fun bind(item: ClothingCategory) {
-            itemView.categoryNameTextView.text = item.name
-            if (item.highlighted) {
-                itemView.categoryNameTextView.apply {
-                    setTextColor(Color.RED)
-                }
-            }
-            GlideApp.with(itemView.context)
-                .load(item.img)
-                .into(this.itemView.categoryImageView)
-            animateView(itemView)
+    fun getSpanSizeAtPosition(position: Int): Int {
+        return when (categoriesContent[position]) {
+            is ClothingCollection -> 1
+            else -> 2
         }
 
     }
-
-    inner class CollectionsHolder(view: View) : BaseViewHolder<CategoriesCollectionsContent>(view) {
-        override fun bind(item: CategoriesCollectionsContent) {
-            itemView.categoriesCollectionRecyclerView.apply {
-                layoutManager = GridLayoutManager(itemView.context, 2)
-                adapter = CategoriesCollectionsRecyclerAdapter(item.collections)
-                setRecycledViewPool(pool)
-            }
-        }
-    }
-
-    private fun animateView(viewToAnimate: View){
-        if(viewToAnimate.animation == null){
-            val animId =R.anim.slide_from_right
-            val animation = AnimationUtils.loadAnimation(viewToAnimate.context, animId)
-            viewToAnimate.animation = animation
-        }
-    }
-
 }

@@ -14,7 +14,8 @@
     <string name="explore_tab_title">Explore</string>
     <string name="new_arrivals_tab_title">New Arrivals</string>
     <string name="view_all"><![CDATA[VIEW ALL  >]]></string>
-    <string name="new_arrivals">New Arrivals</string>
+    <string name="new_arrivals_section_title">New Arrivals</string>
+    <string name="collections_section_title">Collections</string>
     <string name="shopping_picture">shopping picture</string>
     <string name="collections">Collections</string>
     <string name="loading">Loading</string>

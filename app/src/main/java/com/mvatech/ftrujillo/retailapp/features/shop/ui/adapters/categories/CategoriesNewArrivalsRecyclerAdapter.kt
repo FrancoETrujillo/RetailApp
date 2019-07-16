@@ -11,29 +11,22 @@ import com.mvatech.ftrujillo.retailapp.features.shop.data.models.NewArrival
 import kotlinx.android.synthetic.main.category_new_arrivals_item.view.*
 
 class CategoriesNewArrivalsRecyclerAdapter(private val newArrivalList: List<NewArrival>) :
-    RecyclerView.Adapter<CategoriesNewArrivalsRecyclerAdapter.Holder>() {
+    RecyclerView.Adapter<CategoriesNewArrivalsRecyclerAdapter.CategoriesNewArrivalItemHolder>() {
 
     var scrollDirection = ScrollDirection.LEFT
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): Holder {
-        return Holder(parent.inflate(R.layout.category_new_arrivals_item, false))
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): CategoriesNewArrivalItemHolder {
+        return CategoriesNewArrivalItemHolder(parent.inflate(R.layout.category_new_arrivals_item, false))
     }
 
     override fun getItemCount(): Int = newArrivalList.size
 
 
-    override fun onBindViewHolder(holder: Holder, position: Int) {
+    override fun onBindViewHolder(holder: CategoriesNewArrivalItemHolder, position: Int) {
         holder.bind(newArrivalList[position])
     }
 
-    inner class Holder(itemView: View) : RecyclerView.ViewHolder(itemView), View.OnClickListener {
-        init {
-            itemView.setOnClickListener(this)
-        }
-
-        override fun onClick(v: View?) {
-
-        }
+    inner class CategoriesNewArrivalItemHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
 
         fun bind(newArrival: NewArrival) {
             GlideApp.with(itemView.context)
@@ -43,14 +36,15 @@ class CategoriesNewArrivalsRecyclerAdapter(private val newArrivalList: List<NewA
             animateView(itemView)
         }
     }
-    private fun animateView(viewToAnimate: View){
-        if(viewToAnimate.animation == null){
+
+    private fun animateView(viewToAnimate: View) {
+        if (viewToAnimate.animation == null) {
             val animId =
-                if(scrollDirection == ScrollDirection.LEFT) R.anim.slide_from_left else R.anim.slide_from_right
+                if (scrollDirection == ScrollDirection.LEFT) R.anim.slide_from_left else R.anim.slide_from_right
             val animation = AnimationUtils.loadAnimation(viewToAnimate.context, animId)
             viewToAnimate.animation = animation
         }
     }
 
-    enum class ScrollDirection{ LEFT, RIGHT}
+    enum class ScrollDirection { LEFT, RIGHT }
 }

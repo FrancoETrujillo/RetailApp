@@ -6,7 +6,8 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
-import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.GridLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import com.mvatech.ftrujillo.retailapp.R
 import com.mvatech.ftrujillo.retailapp.features.shop.ui.adapters.categories.CategoriesRecyclerAdapter
 import com.mvatech.ftrujillo.retailapp.features.shop.viewmodels.CategoriesViewModel
@@ -16,7 +17,8 @@ import org.koin.android.viewmodel.ext.android.viewModel
 class CategoriesFragment : Fragment() {
 
     private val viewModel by viewModel<CategoriesViewModel>()
-    private lateinit var contentAdapter:CategoriesRecyclerAdapter
+    private lateinit var contentAdapter: CategoriesRecyclerAdapter
+    private lateinit var gridLayoutManager: GridLayoutManager
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -44,15 +46,21 @@ class CategoriesFragment : Fragment() {
     private val onCategoriesTabContentReceived = Observer<List<Any>> {
         progressBar_loading.visibility = View.GONE
         contentAdapter.updateData(it)
-        categoriesParentRecyclerView.layoutManager?.scrollToPosition(it.size-1)
     }
 
     private fun setupRecyclerView() {
         contentAdapter = CategoriesRecyclerAdapter()
+        gridLayoutManager = GridLayoutManager(activity, 2, RecyclerView.VERTICAL, false)
+        gridLayoutManager.spanSizeLookup = spanSizeLookup
         categoriesParentRecyclerView.apply {
-            layoutManager = LinearLayoutManager(activity)
+            layoutManager = gridLayoutManager
             adapter = contentAdapter
         }
     }
 
+    private val spanSizeLookup = object : GridLayoutManager.SpanSizeLookup() {
+        override fun getSpanSize(position: Int): Int {
+            return contentAdapter.getSpanSizeAtPosition(position)
+        }
+    }
 }
