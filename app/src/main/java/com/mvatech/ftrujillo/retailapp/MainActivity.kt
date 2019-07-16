@@ -16,12 +16,11 @@ import kotlinx.android.synthetic.main.activity_main.*
 
 
 class MainActivity : AppCompatActivity() {
-    lateinit var binds: ActivityMainBinding
     private lateinit var drawer:DrawerLayout
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        binds = DataBindingUtil.setContentView(this, R.layout.activity_main)
+        setContentView(R.layout.activity_main)
 
         setUpToolbar()
         setUpDrawer()
@@ -30,7 +29,7 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun setUpToolbar() {
-        setSupportActionBar(binds.mainToolbar)
+        setSupportActionBar(mainToolbar)
         supportActionBar?.setDisplayShowTitleEnabled(false)
         val shopByList = listOf("Shop Mens", "Shop Womens", "Shop Boy", "Shop Girls")
         val spinnerAdapter = ArrayAdapter(this, R.layout.spinner_item, shopByList)
@@ -48,13 +47,13 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun setUpListeners() {
-        binds.mainNavView.setNavigationItemSelectedListener(this::onNavItemSelected)
+        mainNavView.setNavigationItemSelectedListener(this::onNavItemSelected)
     }
 
     private fun setUpDrawer(){
-        drawer = binds.mainNavigationDrawer
+        drawer = mainNavigationDrawer
         val toggle = ActionBarDrawerToggle(
-            this, drawer, binds.mainToolbar,
+            this, drawer, mainToolbar,
             R.string.navigation_drawer_open, R.string.navigation_drawer_close)
         drawer.addDrawerListener(toggle)
         toggle.syncState()
@@ -74,8 +73,8 @@ class MainActivity : AppCompatActivity() {
     }
 
     override fun onBackPressed() {
-        if(binds.mainNavigationDrawer.isDrawerOpen(GravityCompat.START)){
-            binds.mainNavigationDrawer.closeDrawer(GravityCompat.START)
+        if(mainNavigationDrawer.isDrawerOpen(GravityCompat.START)){
+            mainNavigationDrawer.closeDrawer(GravityCompat.START)
         } else {
             super.onBackPressed()
         }

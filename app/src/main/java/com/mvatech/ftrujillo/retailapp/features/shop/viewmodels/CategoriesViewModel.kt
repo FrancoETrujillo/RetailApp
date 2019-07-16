@@ -1,9 +1,7 @@
 package com.mvatech.ftrujillo.retailapp.features.shop.viewmodels
 
-import android.content.res.Resources
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
-import com.mvatech.ftrujillo.retailapp.R
 import com.mvatech.ftrujillo.retailapp.core.ScopedViewModel
 import com.mvatech.ftrujillo.retailapp.features.shop.data.models.categories_tab_wrappers.CategoriesNewArrivalsContent
 import com.mvatech.ftrujillo.retailapp.features.shop.data.models.categories_tab_wrappers.CategoriesSectionHeader

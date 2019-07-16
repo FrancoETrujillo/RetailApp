@@ -38,7 +38,6 @@ class PromotionsListAdapter : RecyclerView.Adapter<PromotionsListAdapter.Holder>
 
     override fun onBindViewHolder(holder: Holder, position: Int) {
         holder.bind(mItemList[position])
-
     }
 
     override fun getItemCount(): Int {
